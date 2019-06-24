@@ -3,9 +3,13 @@ package com.example.pc.mobiletranslator
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    val listHistory = ArrayList<String>();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,9 +22,14 @@ class MainActivity : AppCompatActivity() {
 //        )
 
 
+        val languages: Array<String> = Languages().getLangs()
+        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, languages)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerFrom.setAdapter(adapter)
+        spinnerTo.setAdapter(adapter)
+        spinnerFrom.setSelection(languages.indexOf("Russian"))
+        spinnerTo.setSelection(languages.indexOf("English"))
 
-//        val translation = Translate("Привет","ru-en")
-//        System.out.print(translation)
     }
 
     private fun Translate(textToBeTranslated: String, languagePair: String): String {
@@ -30,9 +39,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun clickButton(view : View){
-        val text = editText.text.toString()
-        val translation = Translate(text,"ru-en")
-        textViewResult.text = translation;
+        val langFrom = spinnerFrom.selectedItem.toString()
+        val langTo = spinnerTo.selectedItem.toString()
+        val codeFrom = Languages().getCodes(Languages().getLangs().indexOf(langFrom))
+        val codeTo = Languages().getCodes(Languages().getLangs().indexOf(langTo))
+        val translatedText = Translate(editText.text.toString(),codeFrom + "-" + codeTo);
+        textViewResult.text = translatedText
+
+        listHistory.add(editText.text.toString() + " ("+codeFrom+") -> " + translatedText + " ("+codeTo+")")
     }
+
+    fun clickImage(view : View){
+        val temp = spinnerTo.getSelectedItemPosition()
+        spinnerTo.setSelection(spinnerFrom.getSelectedItemPosition())
+        spinnerFrom.setSelection(temp)
+    }
+
+    fun historyClick(){
+        
+    }
+
 
 }

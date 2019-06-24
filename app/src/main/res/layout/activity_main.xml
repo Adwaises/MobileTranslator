@@ -26,16 +26,18 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="144dp"
+        android:layout_width="183dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
         android:hint="Введите текст"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerFrom" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:gravity="center"/>
 
     <Button
         android:id="@+id/button"
@@ -52,34 +54,63 @@
 
     <TextView
         android:id="@+id/textViewResult"
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
+        android:layout_width="194dp"
+        android:layout_height="32dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="8dp"
-        android:text="TextView"
+        android:text="Результат"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/textViewFrom"
-        android:layout_width="wrap_content"
+        android:layout_width="122"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="8dp"
-        android:text="From"
+        android:text="С"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/spinnerFrom"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textViewTo"
-        android:layout_width="wrap_content"
+        android:layout_width="122"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
-        android:text="To"
+        android:text="На"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/spinnerTo"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerTo"
+        app:layout_constraintStart_toEndOf="@+id/spinnerFrom"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow"
+        android:onClick="clickImage"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="106dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="8dp"
+        android:text="История"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewResult" />
 
 </android.support.constraint.ConstraintLayout>
