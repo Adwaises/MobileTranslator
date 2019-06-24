@@ -20,9 +20,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-//    configurations {
-//        cleanedAnnotations
-//        compile.exclude group: 'javax' , module:'annotations'
+
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
+//    packagingOptions {
+//        exclude 'META-INF/DEPENDENCIES'
+//    }
+//    defaultConfig {
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                includeCompileClasspath false
+//            }
+//        }
 //    }
 }
 
@@ -35,6 +46,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+    //Error: Program type already present: net.jcip.annotations.notthreadsafe
+    //Error: Program type already present: javax.annotation.CheckReturnValue
 //    implementation ('com.github.vbauer:yandex-translate-api:1.4.2'){
 //        exclude group: 'net.jcip'
 //        exclude group: 'javax'
