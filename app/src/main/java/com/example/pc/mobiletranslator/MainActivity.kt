@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         tts = TextToSpeech(this, this)
 
-        //        val key = "trnsl.1.1.20190621T152145Z.34e4c3f52258adbb.2aa259de70e614d3d1bc791753c296066adaf9ab"
+//        val key = "trnsl.1.1.20190621T152145Z.34e4c3f52258adbb.2aa259de70e614d3d1bc791753c296066adaf9ab"
 //        val api = YTranslateApiImpl(key)
 //        val translation = api.translationApi().translate(
 //                "Как дела?", Direction.of(Language.RU, Language.EN)
