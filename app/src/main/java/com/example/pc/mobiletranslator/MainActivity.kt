@@ -1,20 +1,36 @@
 package com.example.pc.mobiletranslator
 
 import android.content.Intent
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.RecognitionListener
+import android.speech.RecognizerIntent
+import android.speech.SpeechRecognizer
+import android.speech.tts.TextToSpeech
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
+
+    private var tts: TextToSpeech? = null
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val result = tts!!.setLanguage(Locale.US)
+        }
+    }
 
     val listHistory = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        tts = TextToSpeech(this, this)
 
         //        val key = "trnsl.1.1.20190621T152145Z.34e4c3f52258adbb.2aa259de70e614d3d1bc791753c296066adaf9ab"
 //        val api = YTranslateApiImpl(key)
@@ -48,6 +64,14 @@ class MainActivity : AppCompatActivity() {
         textViewResult.text = translatedText
 
         listHistory.add(editText.text.toString() + " ("+codeFrom+") -> " + translatedText + " ("+codeTo+")")
+
+        if(langTo == "English"){
+            imageMicro.visibility = View.VISIBLE
+            textViewMicro.visibility = View.VISIBLE
+        } else {
+            imageMicro.visibility = View.INVISIBLE
+            textViewMicro.visibility = View.INVISIBLE
+        }
     }
 
     fun clickImage(view : View){
@@ -59,11 +83,22 @@ class MainActivity : AppCompatActivity() {
     fun clickHistory(view : View){
         val intent = Intent(this,HistoryActivity::class.java)
         intent.putExtra(HistoryActivity.LIST_HISTORY, listHistory )
-
         startActivity(intent)
+    }
 
+    fun clickMicro(view: View){
+        val text = textViewResult!!.text.toString()
+        tts!!.speak(text, TextToSpeech.QUEUE_FLUSH, null,"")
 
     }
 
+    public override fun onDestroy() {
+        // Shutdown TTS
+        if (tts != null) {
+            tts!!.stop()
+            tts!!.shutdown()
+        }
+        super.onDestroy()
+    }
 
 }

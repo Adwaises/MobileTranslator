@@ -36,11 +36,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageArrows"
         android:gravity="center"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonTranslate"
         android:layout_width="112dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -63,8 +63,10 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        android:gravity="center"/>
+        app:layout_constraintTop_toBottomOf="@+id/buttonTranslate"
+        android:gravity="center"
+        android:background="#d3d3d3"
+        android:textColor="@android:color/black"/>
 
     <TextView
         android:id="@+id/textViewFrom"
@@ -89,7 +91,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageArrows"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
@@ -102,16 +104,45 @@
         android:onClick="clickImage"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonHistory"
         android:layout_width="106dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="8dp"
+        android:onClick="clickHistory"
         android:text="История"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewResult"
-        android:onClick="clickHistory"/>
+        app:layout_constraintTop_toBottomOf="@+id/textViewResult" />
+
+    <ImageView
+        android:id="@+id/imageMicro"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="clickMicro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.384"
+        app:layout_constraintStart_toEndOf="@+id/textViewResult"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTranslate"
+        app:srcCompat="@drawable/microphone"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/textViewMicro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:text="English"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.314"
+        app:layout_constraintStart_toEndOf="@+id/textViewResult"
+        app:layout_constraintTop_toBottomOf="@+id/imageMicro"
+        android:visibility="invisible"/>
 
 </android.support.constraint.ConstraintLayout>
