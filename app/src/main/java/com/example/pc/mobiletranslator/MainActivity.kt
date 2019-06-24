@@ -9,6 +9,7 @@ import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.speech.tts.TextToSpeech
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import kotlinx.android.synthetic.main.activity_main.*
@@ -38,7 +39,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 //                "Как дела?", Direction.of(Language.RU, Language.EN)
 //        )
 
-
         val languages: Array<String> = Languages().getLangs()
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, languages)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -56,22 +56,26 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     fun clickButton(view : View){
-        val langFrom = spinnerFrom.selectedItem.toString()
-        val langTo = spinnerTo.selectedItem.toString()
-        val codeFrom = Languages().getCodes(Languages().getLangs().indexOf(langFrom))
-        val codeTo = Languages().getCodes(Languages().getLangs().indexOf(langTo))
-        val translatedText = Translate(editText.text.toString(),codeFrom + "-" + codeTo);
-        textViewResult.text = translatedText
+        editText.onEditorAction(EditorInfo.IME_ACTION_DONE)
+        listHistory.add(createLine())
 
-        listHistory.add(editText.text.toString() + " ("+codeFrom+") -> " + translatedText + " ("+codeTo+")")
-
-        if(langTo == "English"){
+        if(spinnerTo.selectedItem.toString() == "English"){
             imageMicro.visibility = View.VISIBLE
             textViewMicro.visibility = View.VISIBLE
         } else {
             imageMicro.visibility = View.INVISIBLE
             textViewMicro.visibility = View.INVISIBLE
         }
+    }
+
+    private fun createLine() : String{
+        val langFrom = spinnerFrom.selectedItem.toString()
+        val langTo = spinnerTo.selectedItem.toString()
+        val codeFrom = Languages().getCodes(Languages().getLangs().indexOf(langFrom))
+        val codeTo = Languages().getCodes(Languages().getLangs().indexOf(langTo))
+        val translatedText = Translate(editText.text.toString(),codeFrom + "-" + codeTo);
+        textViewResult.text = translatedText
+        return editText.text.toString() + " ("+codeFrom+") -> " + translatedText + " ("+codeTo+")";
     }
 
     fun clickImage(view : View){
@@ -89,7 +93,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     fun clickMicro(view: View){
         val text = textViewResult!!.text.toString()
         tts!!.speak(text, TextToSpeech.QUEUE_FLUSH, null,"")
-
     }
 
     public override fun onDestroy() {
@@ -99,6 +102,13 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             tts!!.shutdown()
         }
         super.onDestroy()
+    }
+
+    fun shareIt(view: View){
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.setType("text/plain")
+        intent.putExtra(Intent.EXTRA_TEXT, "Результат перевода:\r\n" + createLine())
+        startActivity(Intent.createChooser(intent,"Поделиться"))
     }
 
 }

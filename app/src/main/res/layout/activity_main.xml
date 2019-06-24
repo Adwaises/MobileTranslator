@@ -9,35 +9,36 @@
     <Spinner
         android:id="@+id/spinnerFrom"
         android:layout_width="122dp"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="52dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></Spinner>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Spinner
         android:id="@+id/spinnerTo"
         android:layout_width="122dp"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></Spinner>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="183dp"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/back"
+        android:gravity="center"
         android:hint="Введите текст"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageArrows"
-        android:gravity="center"/>
+        app:layout_constraintTop_toBottomOf="@+id/imageArrows" />
 
     <Button
         android:id="@+id/buttonTranslate"
@@ -54,19 +55,19 @@
 
     <TextView
         android:id="@+id/textViewResult"
-        android:layout_width="194dp"
+        android:layout_width="235dp"
         android:layout_height="32dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="8dp"
-        android:text="Результат"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:hint="Результат"
+        android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonTranslate"
-        android:gravity="center"
-        android:background="#d3d3d3"
-        android:textColor="@android:color/black"/>
+        app:layout_constraintTop_toBottomOf="@+id/buttonTranslate" />
 
     <TextView
         android:id="@+id/textViewFrom"
@@ -109,11 +110,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="48dp"
-        android:layout_marginEnd="8dp"
         android:onClick="clickHistory"
         android:text="История"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewResult"
         app:layout_constraintTop_toBottomOf="@+id/textViewResult" />
 
     <ImageView
@@ -135,14 +134,20 @@
         android:id="@+id/textViewMicro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
         android:text="English"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.314"
-        app:layout_constraintStart_toEndOf="@+id/textViewResult"
-        app:layout_constraintTop_toBottomOf="@+id/imageMicro"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/imageMicro"
+        app:layout_constraintStart_toStartOf="@+id/imageMicro"
+        app:layout_constraintTop_toBottomOf="@+id/imageMicro" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="share it "
+        app:layout_constraintEnd_toEndOf="@+id/textViewResult"
+        app:layout_constraintTop_toBottomOf="@+id/textViewResult"
+        android:onClick="shareIt"/>
 
 </android.support.constraint.ConstraintLayout>
