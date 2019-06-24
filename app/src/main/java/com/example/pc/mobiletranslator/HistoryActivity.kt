@@ -11,9 +11,6 @@ import java.util.ArrayList
 
 class HistoryActivity : AppCompatActivity() {
 
-//    companion object {
-//        val LIST_HISTORY = "list"
-//    }
     var db = DataBaseConnector(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {

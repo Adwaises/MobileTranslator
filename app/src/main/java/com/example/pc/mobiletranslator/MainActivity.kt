@@ -26,8 +26,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
     }
 
-//    val listHistory = ArrayList<String>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -52,13 +50,12 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun Translate(textToBeTranslated: String, languagePair: String): String {
         val translatorBackgroundTask = TranslatorBackgroundTask(this)
-        val translationResult = translatorBackgroundTask.execute(textToBeTranslated, languagePair) // Returns the translated text as a String
+        val translationResult = translatorBackgroundTask.execute(textToBeTranslated, languagePair)
         return translationResult.get()
     }
 
     fun clickButton(view : View){
         editText.onEditorAction(EditorInfo.IME_ACTION_DONE)
-        //listHistory.add(createLine())
         db.insertData(createLine())
         if(spinnerTo.selectedItem.toString() == "English"){
             imageMicro.visibility = View.VISIBLE
@@ -87,7 +84,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     fun clickHistory(view : View){
         val intent = Intent(this,HistoryActivity::class.java)
-        //intent.putExtra(HistoryActivity.LIST_HISTORY, listHistory )
         startActivity(intent)
     }
 
@@ -97,7 +93,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     public override fun onDestroy() {
-        // Shutdown TTS
         if (tts != null) {
             tts!!.stop()
             tts!!.shutdown()
