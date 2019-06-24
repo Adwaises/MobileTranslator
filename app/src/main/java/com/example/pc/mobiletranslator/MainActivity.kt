@@ -18,6 +18,7 @@ import java.util.*
 class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private var tts: TextToSpeech? = null
+    var db = DataBaseConnector(this)
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
     }
 
-    val listHistory = ArrayList<String>()
+//    val listHistory = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,8 +58,8 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     fun clickButton(view : View){
         editText.onEditorAction(EditorInfo.IME_ACTION_DONE)
-        listHistory.add(createLine())
-
+        //listHistory.add(createLine())
+        db.insertData(createLine())
         if(spinnerTo.selectedItem.toString() == "English"){
             imageMicro.visibility = View.VISIBLE
             textViewMicro.visibility = View.VISIBLE
@@ -86,7 +87,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     fun clickHistory(view : View){
         val intent = Intent(this,HistoryActivity::class.java)
-        intent.putExtra(HistoryActivity.LIST_HISTORY, listHistory )
+        //intent.putExtra(HistoryActivity.LIST_HISTORY, listHistory )
         startActivity(intent)
     }
 
