@@ -1,5 +1,6 @@
 package com.example.pc.mobiletranslator
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    val listHistory = ArrayList<String>();
+    val listHistory = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,8 +56,13 @@ class MainActivity : AppCompatActivity() {
         spinnerFrom.setSelection(temp)
     }
 
-    fun historyClick(){
-        
+    fun clickHistory(view : View){
+        val intent = Intent(this,HistoryActivity::class.java)
+        intent.putExtra(HistoryActivity.LIST_HISTORY, listHistory )
+
+        startActivity(intent)
+
+
     }
 
 
