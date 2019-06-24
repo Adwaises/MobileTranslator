@@ -18,7 +18,7 @@ import java.util.*
 class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private var tts: TextToSpeech? = null
-    var db = DataBaseConnector(this)
+    private var db = DataBaseConnector(this)
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 //                "Как дела?", Direction.of(Language.RU, Language.EN)
 //        )
 
-        val languages: Array<String> = Languages().getLangs()
+        val languages= Languages().getLangs()
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, languages)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerFrom.setAdapter(adapter)
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     private fun Translate(textToBeTranslated: String, languagePair: String): String {
-        val translatorBackgroundTask = TranslatorBackgroundTask(this)
+        val translatorBackgroundTask = TranslatorBackgroundTask()
         val translationResult = translatorBackgroundTask.execute(textToBeTranslated, languagePair)
         return translationResult.get()
     }

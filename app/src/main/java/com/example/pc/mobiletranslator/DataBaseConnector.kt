@@ -18,15 +18,15 @@ class DataBaseConnector(var context: Context): SQLiteOpenHelper(context, "databa
 
     fun insertData(text : String){
         val db = this.getWritableDatabase()
-        var cv = ContentValues()
+        val cv = ContentValues()
         cv.put("text",text)
-        var result = db.insert("history",null,cv)
+        val result = db.insert("history",null,cv)
     }
 
     fun readData(): ArrayList<String>{
-        var list = ArrayList<String>()
+        val list = ArrayList<String>()
         val db = this.readableDatabase
-        var query = "Select * from " + "history order by id desc"
+        val query = "Select * from " + "history order by id desc"
         val results = db.rawQuery(query,null)
         if (results.moveToFirst()){
             do {

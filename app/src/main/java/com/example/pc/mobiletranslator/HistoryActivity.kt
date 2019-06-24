@@ -11,7 +11,7 @@ import java.util.ArrayList
 
 class HistoryActivity : AppCompatActivity() {
 
-    var db = DataBaseConnector(this)
+    private var db = DataBaseConnector(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -9,9 +9,7 @@ import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
 
-class TranslatorBackgroundTask
-internal constructor(
-        private var ctx: Context) : AsyncTask<String, Void, String>() {
+class TranslatorBackgroundTask : AsyncTask<String, Void, String>() {
 
     override fun doInBackground(vararg params: String): String? {
         val textToBeTranslated = params[0]
@@ -34,7 +32,7 @@ internal constructor(
             httpJsonConnection.disconnect()
 
             resultString = resultString.substring(resultString.indexOf("[")+2,resultString.indexOf("]")-1)
-            
+
             return resultString
 
         } catch (e: MalformedURLException) {
@@ -44,15 +42,5 @@ internal constructor(
         }
 
         return null
-    }
-
-    override fun onPreExecute() {
-        super.onPreExecute()
-    }
-
-    override fun onPostExecute(result: String) {}
-
-    override fun onProgressUpdate(vararg values: Void) {
-        super.onProgressUpdate(*values)
     }
 }
